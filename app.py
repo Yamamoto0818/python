@@ -83,11 +83,11 @@ def book_list():
 #--------------------------------------------------------------
 
 @app.route('/registerbook')
-def regi_book():
-    return render_template('regibook.html')
+def register_book():
+    return render_template('register_book.html')
 
-@app.route('/registerbook_exe', methods=['POST'])
-def regi_book_exe():
+@app.route('/register_book_exe', methods=['POST'])
+def register_book_exe():
     title = request.form.get('title')
     author = request.form.get('author')
     publisher = request.form.get('publisher')
@@ -96,11 +96,8 @@ def regi_book_exe():
     
     db.insert_book(title, author, publisher, pages)
     
-    return render_template('regisucb.html')
+    return render_template('success_register_book.html')
     
-@app.route('/editbook')
-def edit_book():
-    return render_template('editbook.html')  
 
 @app.route('/delete_book')
 def delete_book():

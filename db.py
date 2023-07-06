@@ -93,8 +93,7 @@ def insert_book(title, author, publisher, pages):
     connection.commit()
     cursor.close()
     connection.close()
-    
-    
+       
 def get_connection():
     url = os.environ['DATABASE_URL']
     connection = psycopg2.connect(url)
@@ -111,24 +110,13 @@ def insert_book(title, author, publisher, pages):
     cursor.close()
     connection.close()
 
-def edit_book(title, author, publisher, pages):
+def delete_book(id):
     connection = get_connection()
     cursor = connection.cursor()
-    sql ="UPDATE books_python1 SET title = ?, author = ?, publisher = ?, pages = ?, WHERE id = ?";
-    
-    cursor.execute(sql,(title,author, publisher,pages))
-    
+    sql = 'DELETE FROM books_python1 WHERE id = %s'
+
+    cursor.execute(sql, (id))
+
     connection.commit()
     cursor.close()
     connection.close()
-    
-def delete_book(id):
-  connection = get_connection()
-  cursor = connection.cursor()
-  sql = 'DELETE FROM books_python1 WHERE id = %s'
-
-  cursor.execute(sql, (id))
-
-  connection.commit()
-  cursor.close()
-  connection.close()
