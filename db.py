@@ -115,7 +115,7 @@ def delete_book(id):
     cursor = connection.cursor()
     sql = 'DELETE FROM books_python1 WHERE id = %s'
 
-    cursor.execute(sql, (id))
+    cursor.execute(sql, (id,))
 
     connection.commit()
     cursor.close()
