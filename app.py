@@ -111,5 +111,25 @@ def delete_book_exe():
     
     return render_template('success_delete.html')
 
+@app.route('/edit_book')
+def edit_book():
+    id = request.args.get('id')
+    return render_template('edit_book_form.html' ,id=id)
+
+@app.route('/edit_book_exe', methods=['POST'])
+def edit_book_exe():
+
+    id = request.form.get('id')
+    title = request.form.get('title')
+    author = request.form.get('author')
+    publisher = request.form.get('publisher')
+    pages = request.form.get('pages')
+   
+    print(id, title, author, publisher, pages)
+    
+    db.edit_book(id, title, author, publisher, pages)
+    
+    return render_template('success_edit_book.html')
+
 if __name__ == '__main__':
     app.run(debug=True)

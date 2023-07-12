@@ -120,3 +120,15 @@ def delete_book(id):
     connection.commit()
     cursor.close()
     connection.close()
+    
+def edit_book(id, title, author, publisher, pages):
+    connection = get_connection()
+    cursor = connection.cursor()
+    
+    sql ="UPDATE books_python1 SET title = %s, author = %s, publisher = %s, pages = %s WHERE id = %s"
+    
+    cursor.execute(sql,(title, author, publisher, pages, id))
+    
+    connection.commit()
+    cursor.close()
+    connection.close()
